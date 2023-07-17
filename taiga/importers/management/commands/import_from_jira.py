@@ -57,14 +57,16 @@ class Command(BaseCommand):
                 True
             )
             print(url)
-            input("Go to the url, allow the user and get back and press enter")
+            input("Go to the url, watch out for 'oauth_verifier' url param in devtools, allow the user and get back and press enter")
+            oauth_verifier = input("oauth_verifier: ")
             token = JiraNormalImporter.get_access_token(
                 server,
                 settings.IMPORTERS.get('jira', {}).get('consumer_key', None),
                 settings.IMPORTERS.get('jira', {}).get('cert', None),
                 rtoken,
                 rtoken_secret,
-                True
+                oauth_verifier,
+                False
             )
             print("Auth token: {}".format(json.dumps(token)))
 
