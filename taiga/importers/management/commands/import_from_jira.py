@@ -38,9 +38,11 @@ class Command(BaseCommand):
         parser.add_argument('--keep-external-reference', dest='keep_external_reference', const=True,
                             action="store_const", default=False,
                             help='Store external reference of imported data')
+        parser.add_argument('--superuser', dest='superuser', default="admin",
+                            help='Name of superuser (default admin)')
 
     def handle(self, *args, **options):
-        admin = User.objects.get(username="admin")
+        admin = User.objects.get(username=options.get("superuser"))
         server = options.get("server")
 
         if options.get('token', None) == "anon":
