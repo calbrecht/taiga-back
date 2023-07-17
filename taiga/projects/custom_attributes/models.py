@@ -46,7 +46,7 @@ class AbstractCustomAttribute(models.Model):
     class Meta:
         abstract = True
         ordering = ["project", "order", "name"]
-        unique_together = ("project", "name")
+        unique_together = ("project", "name", "type")
 
     def __str__(self):
         return self.name
