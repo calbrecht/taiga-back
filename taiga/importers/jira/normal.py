@@ -207,7 +207,7 @@ class JiraNormalImporter(JiraImporterCommon):
                         backlog_order=counter,
                         subject=issue['fields']['summary'],
                         description=issue['fields']['description'] or '',
-                        tags=issue['fields']['labels'] or [],
+                        tags=issue['fields'].get('labels', []),
                         external_reference=external_reference,
                     )
 
@@ -278,7 +278,7 @@ class JiraNormalImporter(JiraImporterCommon):
                     status=project.task_statuses.get(name=issue['fields']['status']['name']),
                     subject=issue['fields']['summary'],
                     description=issue['fields']['description'] or '',
-                    tags=issue['fields']['labels'] or [],
+                    tags=issue['fields'].get('labels', []),
                     external_reference=external_reference,
                 )
 
@@ -332,7 +332,7 @@ class JiraNormalImporter(JiraImporterCommon):
                         status=project.issue_statuses.get(name=issue['fields']['status']['name']),
                         subject=issue['fields']['summary'],
                         description=issue['fields']['description'] or '',
-                        tags=issue['fields']['labels'] or [],
+                        tags=issue['fields'].get('labels', []),
                         external_reference=external_reference,
                     )
 
@@ -388,7 +388,7 @@ class JiraNormalImporter(JiraImporterCommon):
                         subject=issue['fields']['summary'],
                         description=issue['fields']['description'] or '',
                         epics_order=counter,
-                        tags=issue['fields']['labels'] or [],
+                        tags=issue['fields'].get('labels', []),
                         external_reference=external_reference,
                     )
 
